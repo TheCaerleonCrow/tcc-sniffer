@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace TCC.Sniffer.Templates
+﻿namespace TCC.Sniffer.Templates
 {
     /// <summary>
     /// Called when silver or gold is updated.

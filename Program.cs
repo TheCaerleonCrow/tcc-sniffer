@@ -1,11 +1,7 @@
 ﻿using NLog;
 using PacketDotNet;
 using SharpPcap;
-using System;
-using System.Collections.Generic;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using TCC.Sniffer;
 using TCC.Sniffer.Templates;
 
@@ -45,8 +41,8 @@ namespace TCC
             NLog.LogManager.Setup().LoadConfiguration(builder =>
             {
                 var layout = "[${level}][${time}] : ${message}";
-                builder.ForLogger().WriteToConsole(layout:layout, encoding:Encoding.UTF8);
-                builder.ForLogger().WriteToFile(fileName: "log.txt", layout:layout, encoding: Encoding.UTF8);
+                builder.ForLogger().WriteToConsole(layout: layout, encoding: Encoding.UTF8);
+                builder.ForLogger().WriteToFile(fileName: "log.txt", layout: layout, encoding: Encoding.UTF8);
             });
         }
 
@@ -62,11 +58,11 @@ namespace TCC
             _parser = new PacketParser();
 
             // Debugging settings, useful to find/learn about certain packets.
-            _parser.Debug = debug;
+            _parser.Debug = true;
             _parser.DebugPacketValues = true;
-            _parser.DebugEventCode = (short)EventCode.ALL;
-            _parser.DebugRequestCode = (short)OperationCode.ALL;
-            _parser.DebugResponseCode = (short)OperationCode.ALL;
+            _parser.DebugEventCode = (short)EventCode.ChatMessage;
+            _parser.DebugRequestCode = (short)OperationCode.NONE;
+            _parser.DebugResponseCode = (short)OperationCode.NONE;
 
             // Filter certain packets that we don't care about.
             // Mostly used for debugging, but this does filter them out completely.

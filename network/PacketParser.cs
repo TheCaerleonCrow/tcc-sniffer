@@ -1,7 +1,4 @@
 ﻿using PhotonPackageParser;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using TCC.Sniffer.Templates;
 
 namespace TCC.Sniffer
@@ -157,7 +154,7 @@ namespace TCC.Sniffer
             logger.Debug("[{0}][{1}] : {2}\n{3}", Enum.GetName(typeof(PacketType), packetType), rawCode, codeName, s);
         }
 
-        public static byte ParseByte(object value) => 
+        public static byte ParseByte(object value) =>
             value as byte? ?? 0;
 
         public static short ParseShort(object value) =>

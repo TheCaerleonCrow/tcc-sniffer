@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace TCC.Sniffer.Templates
+﻿namespace TCC.Sniffer.Templates
 {
     public abstract class PacketTemplate
     {
