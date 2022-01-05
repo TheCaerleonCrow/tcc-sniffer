@@ -1,28 +1,31 @@
 ### ATTENTION
-This project is open so others can learn from it.
-I do not feel it is ready for public use, so I don't sugggest using it in the current state.
-Many things can change, since I'm still experimenting with ideas.
+This project is open so others can learn from it.<br>
+I do not feel it is ready for public use, so I don't sugggest using it in the current state.<br>
+Many things can change, since I'm still experimenting with ideas.<br>
 
 If you have any suggestions or ideas, feel free to open an issue about them.
 
 ---
 
-`tcc-sniffer` is a program that collects and decodes network packets relating to Albion Online.
-This program does not collect or decode any data that would break the [`game rules`]().
+`tcc-sniffer` is a program that collects and decodes network packets relating to Albion Online.<br>
+This program does not collect or decode any data that would break the [`game rules`]().<br>
+The program will never send any data collected or decoded to anything outside your computer.<br>
 
-The program will run a simple tcp server @ localhost:9999 by default.
-You can find a detailed example using nodejs in [`/example/`]().
-This example runs the sniffer in the background, connects to the server, and consumes the data.
+The program will run a simple tcp server @ localhost:9999 by default.<br>
+For those unaware, localhost is a special ip that only your computer has access to.<br>
+You can find a detailed example using nodejs in [`/example/`]().<br>
+This example runs the sniffer in the background, connects to the server, and consumes the data.<br>
 <!--
 If you want to consume the data as a third-party, please consider building your tool in the [`tcc-client`](). )
 You can head over to [`tcc-extension-template`]() to learn how to do that.
 -->
 
 ---
-
-## **What do we collect?**<br>
-- Chat Messages
-- ...
+## **What does the program collect and decode?**
+<details>
+- Chat Messages <br>
+- Silver / Gold Amounts <br>
+</details>
 
 This list will continue to expand as I get to things...
 
