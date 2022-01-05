@@ -19,7 +19,8 @@
         Local = 536,
 
         // These seem to change for some reason... futher comments are other values I've seen them as.
-        // Most likely these channels have some range they can be in, and they get reset at server reset.
+        // Most likely these channels have some range they can be in, which are then shuffled at server reset time.
+        // They will also likely need special code to properly parse.
         Faction = 1755, //1761,
         Guild = 2492, //104320, 74883,
     }

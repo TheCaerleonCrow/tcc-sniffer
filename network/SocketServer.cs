@@ -11,22 +11,13 @@ namespace TCC.Sniffer
     public class SocketServer : TcpListener
     {
         private static readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
-
         private List<TcpClient> _clients = new List<TcpClient>();
-
-
-
-
 
         public SocketServer(string ip = "127.0.0.1", int port = 9999) : base(IPAddress.Parse(ip), port)
         {
             Start();
             ListenForClients();
         }
-
-
-
-
 
         private void ListenForClients()
         {
@@ -41,10 +32,6 @@ namespace TCC.Sniffer
             })
             .Start();
         }
-
-
-
-
 
         public void SendData(object data)
         {

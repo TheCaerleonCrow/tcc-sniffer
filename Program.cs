@@ -14,15 +14,9 @@ namespace TCC
     internal class Program
     {
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
-
         private static PacketParser _parser;
         private static SocketServer _server;
-
         private static List<Thread> _deviceThreads;
-
-
-
-
 
         /// <summary>
         /// 
@@ -45,10 +39,6 @@ namespace TCC
 
             return 0;
         }
-
-
-
-
 
         private static void SetupLogger()
         {
@@ -118,10 +108,6 @@ namespace TCC
                 _deviceThreads.Add(thread);
             }
         }
-
-
-
-
 
         private static void PacketHandler(object s, PacketCapture e)
         {

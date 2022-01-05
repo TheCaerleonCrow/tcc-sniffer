@@ -15,18 +15,9 @@ namespace TCC.Sniffer.Templates
         public override PacketType Type => PacketType.EVENT;
         public override short Code => (short)EventCode.ChatMessage; // 63
 
-
-
-
-
-
         public ChatChannelCode ChannelCode { get; }
         public string Player { get; }
         public string Message { get; }
-
-
-
-
 
         public EventChatMessage(Dictionary<byte, object> rawData = null) : base(rawData)
         {

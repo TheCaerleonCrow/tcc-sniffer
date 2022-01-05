@@ -26,10 +26,6 @@ namespace TCC.Sniffer
 
         private SocketServer _server;
 
-
-
-
-
         public PacketParser() : base()
         {
             _filteredCodes = new Dictionary<PacketType, List<short>>();
@@ -44,20 +40,20 @@ namespace TCC.Sniffer
             }
         }
 
-
-
-
-
-        public void FilterCode(PacketType packetType, short code) =>
+        public void FilterCode(PacketType packetType, short code)
+        {
             _filteredCodes[packetType].Add(code);
+        }
 
-        public void RegisterPacket(PacketTemplate packet) =>
+        public void RegisterPacket(PacketTemplate packet)
+        {
             _registeredPackets[packet.Type].Add(packet.Code, packet.GetType());
+        }
 
-        public void OnHandlePacket(Action<PacketTemplate> callback) =>
+        public void OnHandlePacket(Action<PacketTemplate> callback)
+        {
             _handlePacketCallbacks.Add(callback);
-
-
+        }
 
         protected override void OnEvent(byte code, Dictionary<byte, object> rawData)
         {
@@ -78,10 +74,6 @@ namespace TCC.Sniffer
             // We could extend responses somehow with these extra parameters...
             HandlePacket(OperationSig, PacketType.RESPONSE, rawData);
         }
-
-
-
-
 
         private void HandlePacket(byte sig, PacketType packetType, Dictionary<byte, object> rawData)
         {
@@ -164,7 +156,6 @@ namespace TCC.Sniffer
 
             logger.Debug("[{0}][{1}] : {2}\n{3}", Enum.GetName(typeof(PacketType), packetType), rawCode, codeName, s);
         }
-
 
         public static byte ParseByte(object value) => 
             value as byte? ?? 0;

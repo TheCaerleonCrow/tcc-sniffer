@@ -14,10 +14,8 @@ namespace TCC.Sniffer.Templates
         public override PacketType Type => PacketType.EVENT;
         public override short Code => (short)EventCode.UpdateMoney; // 71
 
-
         public long Silver { get; }
         public long Gold { get; }
-
 
         public EventUpdateMoney(Dictionary<byte, object> rawData = null) : base(rawData)
         {
