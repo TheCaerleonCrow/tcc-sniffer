@@ -60,15 +60,15 @@ namespace TCC
             // Debugging settings, useful to find/learn about certain packets.
             _parser.Debug = true;
             _parser.DebugPacketValues = true;
-            _parser.DebugEventCode = (short)EventCode.ChatMessage;
-            _parser.DebugRequestCode = (short)OperationCode.NONE;
-            _parser.DebugResponseCode = (short)OperationCode.NONE;
+            _parser.DebugEventCode = (short)EventCode.ALL;
+            _parser.DebugRequestCode = (short)OperationCode.ALL;
+            _parser.DebugResponseCode = (short)OperationCode.ALL;
 
             // Filter certain packets that we don't care about.
             // Mostly used for debugging, but this does filter them out completely.
             _parser.FilterCode(PacketType.EVENT, (short)EventCode.Move);
             _parser.FilterCode(PacketType.REQUEST, (short)OperationCode.Move);
-            //_parser.FilterCode(PacketType.EVENT, (short)EventCode.ChatMessage);
+            _parser.FilterCode(PacketType.EVENT, (short)EventCode.ChatMessage);
             _parser.FilterCode(PacketType.EVENT, (short)EventCode.Unknown144);
             _parser.FilterCode(PacketType.EVENT, (short)EventCode.InCombatStateUpdate);
             _parser.FilterCode(PacketType.REQUEST, (short)OperationCode.ClientHardwareStats);
@@ -77,6 +77,7 @@ namespace TCC
             // Later we should use reflection to automatically register everything in TCC.Sniffer.Templates.
             _parser.RegisterPacket(new EventChatMessage());
             _parser.RegisterPacket(new EventUpdateMoney());
+            _parser.RegisterPacket(new EventOtherGrabbedLoot());
 
             // 
             _parser.OnHandlePacket(_server.SendData);

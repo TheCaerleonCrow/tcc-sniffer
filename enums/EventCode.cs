@@ -22,5 +22,6 @@
         Unknown144 = 144,
         StartLogout = 189,
         InCombatStateUpdate = 254,
+        OtherGrabbedLoot = 256,
     }
 }
