@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sniffer", "sniffer.csproj", "{22CEE9F4-0896-4DF7-9C50-97928E2F93EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{22CEE9F4-0896-4DF7-9C50-97928E2F93EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22CEE9F4-0896-4DF7-9C50-97928E2F93EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22CEE9F4-0896-4DF7-9C50-97928E2F93EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22CEE9F4-0896-4DF7-9C50-97928E2F93EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DD3D89FE-ECB7-45E9-8D6B-5E92A4381BCE}
+	EndGlobalSection
+EndGlobal
