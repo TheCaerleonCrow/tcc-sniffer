@@ -76,7 +76,7 @@ If you're interested in seeing how that works, check out any of these:<br>
 To find alot more Albion related projects, visit [`AO-Data`](https://github.com/ao-data).
 
 ## License
-See [`LICENSE`](LICENSE).<br>
+We use the [`AGPLv3 License`](LICENSE).<br>
 You are free to use this code however you want. 
 However, you are not allowed to redistribute the code unless your code is also open source. 
 The nature of this project is delicate, since it looks into the user's network stream, so we need to take special care to be as transparent as possible. 
