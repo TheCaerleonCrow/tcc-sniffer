@@ -23,7 +23,7 @@
             if (rawData == null) return;
 
             Victim = (string)rawData[1];
-            Looter = (string)rawData[1];
+            Looter = (string)rawData[2];
             Item = PacketParser.ParseInt(rawData[4]);
         }
     }
