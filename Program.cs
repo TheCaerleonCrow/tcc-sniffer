@@ -77,7 +77,7 @@ namespace TCC
             // Later we should use reflection to automatically register everything in TCC.Sniffer.Templates.
             _parser.RegisterPacket(new EventChatMessage());
             _parser.RegisterPacket(new EventUpdateMoney());
-            _parser.RegisterPacket(new EventOtherGrabbedLoot());
+            _parser.RegisterPacket(new EventGrabbedLoot());
 
             // 
             _parser.OnHandlePacket(_server.SendData);

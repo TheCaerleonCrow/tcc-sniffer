@@ -154,6 +154,9 @@ namespace TCC.Sniffer
             logger.Debug("[{0}][{1}] : {2}\n{3}", Enum.GetName(typeof(PacketType), packetType), rawCode, codeName, s);
         }
 
+        public static bool ParseBool(object value) =>
+           value as bool? ?? false;
+
         public static byte ParseByte(object value) =>
             value as byte? ?? 0;
 
