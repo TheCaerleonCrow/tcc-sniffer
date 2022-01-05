@@ -3,6 +3,8 @@ This project is open so others can learn from it.
 I do not feel it is ready for public use, so I don't sugggest using it in the current state.
 Many things can change, since I'm still experimenting with ideas.
 
+If you have any suggestions or ideas, feel free to open an issue about them.
+
 ---
 
 `tcc-sniffer` is a program that collects and decodes network packets relating to Albion Online.
