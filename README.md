@@ -8,12 +8,12 @@ If you have any suggestions or ideas, feel free to open an issue about them.
 ---
 
 `tcc-sniffer` is a program that collects and decodes network packets relating to Albion Online.<br>
-This program does not collect or decode any data that would break the [`game rules`]().<br>
+This program does not collect or decode any data that would break the [`game rules`](https://albiononline.com/en/game-rules).<br>
 The program will never send any data collected or decoded to anything outside your computer.<br>
 
 The program will run a simple tcp server @ localhost:9999 by default.<br>
 For those unaware, localhost is a special ip that only your computer has access to.<br>
-You can find a detailed example using nodejs in [`/example/`]().<br>
+You can find a detailed example using nodejs in [`/examples/`](/examples/client-nodejs).<br>
 This example runs the sniffer in the background, connects to the server, and consumes the data.<br>
 <!--
 If you want to consume the data as a third-party, please consider building your tool in the [`tcc-client`](). )
@@ -33,7 +33,7 @@ This list will continue to expand as I get to things...
 I have only used this on Windows. Linux/Mac users will have to figure things out themselves.
 
 Requirements(Windows):
-- Install [`NPCAP`]()
+- Install [`NPCAP`](https://nmap.org/npcap/) (Look for the `Npcap 1.60 installer` link.)
 - Visual Studio (2019 or 2022)
 
 1. Open the solution file in Visual Studio.
@@ -50,14 +50,14 @@ Requests are asking for something, or just sending something.<br>
 Responses are answering a request.<br>
 
 Packets are identified by a special code.<br>
-Events have there own Event Codes.<Br>
-Requests and Responses share Operation Codes.<br>
+Events have there own `Event Codes`.<Br>
+Requests and Responses share `Operation Codes`.<br>
 
 Every packet is packed like a dictionary or table, or more simple; key/value pairs.<br>
 The data in the packet has a key, which is a single byte.<br>
 The data itself is given to us as a plain object, which we must convert to the actual value type.<br>
 
-Every packet has a key of 252/253, which tells us the code that identifies the packet.<br>
+Every packet has a key of 252 or 253, which tells us the code that identifies the packet.<br>
 252 are events<br>
 253 are operations<br>
 So, if a packet has 252=63, this is the Chat Message event.<br>
@@ -70,5 +70,7 @@ Also, they both will have the same code on the 253 key.<br>
 Finally, Albion uses the Photon Engine for networking.<br>
 Luckily for us, people have already made libraries to decode Photon's packets.<br>
 If you're interested in seeing how that works, check out any of these:<br>
-- [`C# PhotonPacketParser`]()
-- [`Go PhotonSpectator`]()
+- [`C# PhotonPacketParser`](https://github.com/0blu/PhotonPackageParser)
+- [`Go PhotonSpectator`](https://github.com/ao-data/photon-spectator)
+
+To find alot more Albion related projects, visit [`AO-Data`](https://github.com/ao-data).
