@@ -20,9 +20,14 @@
         {
             if (rawData == null) return;
 
-            ChannelCode = (ChatChannelCode)Convert.ToInt32(rawData[0]);
-            Player = (string)rawData[1];
-            Message = (string)rawData[2];
+            if (rawData.ContainsKey(0))
+                ChannelCode = (ChatChannelCode)Convert.ToInt32(rawData[0]);
+
+            if (rawData.ContainsKey(1))
+                Player = (string)rawData[1];
+
+            if (rawData.ContainsKey(2))
+                Message = (string)rawData[2];
         }
     }
 }

@@ -25,11 +25,20 @@
         {
             if (rawData == null) return;
 
-            Victim = (string)rawData[1];
-            Looter = (string)rawData[2];
-            IsSilver = PacketParser.ParseBool(rawData[3]);
-            Item = PacketParser.ParseInt(rawData[4]);
-            Amount = PacketParser.ParseLong(rawData[5]);
+            if (rawData.ContainsKey(1))
+                Victim = (string)rawData[1];
+
+            if (rawData.ContainsKey(2))
+                Looter = (string)rawData[2];
+
+            if (rawData.ContainsKey(3))
+                IsSilver = PacketParser.ParseBool(rawData[3]);
+
+            if (rawData.ContainsKey(4))
+                Item = PacketParser.ParseInt(rawData[4]);
+
+            if (rawData.ContainsKey(5))
+                Amount = PacketParser.ParseLong(rawData[5]);
         }
     }
 }

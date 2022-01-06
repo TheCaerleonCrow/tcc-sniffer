@@ -18,8 +18,11 @@
         {
             if (rawData == null) return;
 
-            Silver = PacketParser.ParseLong(rawData[1]);
-            Gold = PacketParser.ParseLong(rawData[2]);
+            if (rawData.ContainsKey(1))
+                Silver = PacketParser.ParseLong(rawData[1]);
+
+            if (rawData.ContainsKey(2))
+                Gold = PacketParser.ParseLong(rawData[2]);
         }
     }
 }

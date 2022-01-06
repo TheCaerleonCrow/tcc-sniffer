@@ -58,7 +58,7 @@ namespace TCC
             _parser = new PacketParser();
 
             // Debugging settings, useful to find/learn about certain packets.
-            _parser.Debug = true;
+            _parser.Debug = debug;
             _parser.DebugPacketValues = true;
             _parser.DebugEventCode = (short)EventCode.ALL;
             _parser.DebugRequestCode = (short)OperationCode.ALL;
