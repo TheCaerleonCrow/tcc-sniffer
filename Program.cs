@@ -42,7 +42,7 @@ namespace TCC
             {
                 var layout = "[${level}][${time}] : ${message}";
                 builder.ForLogger().WriteToConsole(layout: layout, encoding: Encoding.UTF8);
-                builder.ForLogger().WriteToFile(fileName: "log.txt", layout: layout, encoding: Encoding.UTF8);
+                builder.ForLogger().WriteToFile(fileName: "logs/sniffer.txt", layout: layout, encoding: Encoding.UTF8);
             });
         }
 
