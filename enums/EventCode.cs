@@ -7,6 +7,7 @@
 
         Move = 3,
         InventoryPutItem = 24,
+        InventoryDelItem = 25,
         NewBuilding = 36,
         HarvestFinished = 52,
         ChatMessage = 63,
@@ -28,6 +29,6 @@
         Unknown144 = 144,
         StartLogout = 189,
         InCombatStateUpdate = 254,
-        OtherGrabbedLoot = 256,
+        GrabbedLoot = 256,
     }
 }

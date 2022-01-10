@@ -13,7 +13,7 @@
     public class EventGrabbedLoot : PacketTemplate
     {
         public override PacketType Type => PacketType.EVENT;
-        public override short Code => (short)EventCode.OtherGrabbedLoot; // 256
+        public override short Code => (short)EventCode.GrabbedLoot; // 256
 
         public string Victim { get; }
         public string Looter { get; }
