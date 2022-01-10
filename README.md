@@ -23,10 +23,11 @@ You can head over to [`tcc-extension-template`]() to learn how to do that.
  
 ---
 
-## What does the program collect and decode?
+## Packets
 <details>
+<summary>These are the packets that get processed and sent out.</summary>
 - Chat Messages <br>
-- Silver / Gold Amounts <br>
+- Silver / Gold Updates <br>
 </details>
 
 This list will continue to expand as I get to things...
@@ -36,7 +37,7 @@ I have only used this on Windows. Linux/Mac users will have to figure things out
 
 Requirements(Windows):
 - Install [`NPCAP`](https://nmap.org/npcap/) (Look for the `Npcap 1.60 installer` link.)
-- Visual Studio (2019 or 2022)
+- Visual Studio (suggest 2022)
 
 1. Open the solution file in Visual Studio.
 2. Select Build from the menubar, then select Publish.
@@ -74,6 +75,17 @@ If you're interested in seeing how that works, check out any of these:<br>
 - [`Go PhotonSpectator`](https://github.com/ao-data/photon-spectator)
 
 To find alot more Albion related projects, visit [`AO-Data`](https://github.com/ao-data).
+
+## Command Line
+
+| Option | Description | Example |
+| --- | --- | --- |
+| --debug | When debugging, the program will log the packet values.
+| --debugAllCodes | This will enable all codes to be debugged.
+| --stopOnDebug | This will stop the program from sending debugged packets on the local network.
+| --events | Only debug these events. | 1,2,3 |
+| --requests | Only debug these requests. | 1,2,3 |
+| --responses | Only debug these responses. | 1,2,3 |
 
 ## License
 We use the [`AGPLv3 License`](LICENSE).<br>
