@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "sniffer": {
+      "commandName": "Project",
+      "commandLineArgs": "--debug --events 63,71"
+    }
+  }
+}

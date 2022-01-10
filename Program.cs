@@ -14,13 +14,25 @@ namespace TCC
         private static SocketServer _server;
         private static List<Thread> _deviceThreads;
 
+
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="ip">The ip address the socket server uses.</param>
-        /// <param name="port">The port the socket server uses.</param>
-        /// <param name="debug">If debugging, packets are instead printed to the server.</param>
-        private static async Task<int> Main(string ip = "127.0.0.1", int port = 9999, bool debug = false)
+        /// <param name="ip"></param>
+        /// <param name="port"></param>
+        /// <param name="debug"></param>
+        /// <param name="debugAllPackets"></param>
+        /// <param name="stopOnDebug"></param>
+        /// <param name="events"></param>
+        private static async Task<int> Main(
+            string ip = "127.0.0.1",
+            int port = 9999,
+            bool debug = false,
+            bool debugAllPackets = false,
+            bool stopOnDebug = false,
+            string events = "",
+            string requests = "",
+            string responses = "")
         {
             Console.OutputEncoding = Encoding.UTF8;
             SetupLogger();
@@ -28,7 +40,11 @@ namespace TCC
             logger.Info("Sniffer Started! Setting up...");
 
             SetupServer(ip, port);
-            SetupParser(debug);
+            SetupParser(debug, debugAllPackets, stopOnDebug, 
+                events.Split(',').Select(Int16.Parse).ToArray(),
+                requests.Split(',').Select(Int16.Parse).ToArray(),
+                responses.Split(',').Select(Int16.Parse).ToArray()
+            );
             SetupDevices();
 
             logger.Info("Setup Complete!");
@@ -52,23 +68,42 @@ namespace TCC
             _server = new SocketServer(ip, port);
         }
 
-        private static void SetupParser(bool debug)
+        private static void SetupParser(
+            bool debug, bool debugAllCodes, bool stopOnDebug, 
+            short[]? events, 
+            short[]? requests, 
+            short[]? responses)
         {
             logger.Info("Setting up parser...");
             _parser = new PacketParser();
 
             // Debugging settings, useful to find/learn about certain packets.
             _parser.Debug = debug;
-            _parser.DebugPacketValues = true;
-            _parser.DebugEventCode = (short)EventCode.ALL;
-            _parser.DebugRequestCode = (short)OperationCode.ALL;
-            _parser.DebugResponseCode = (short)OperationCode.ALL;
+            _parser.DebugAllCodes = debugAllCodes;
+            _parser.StopOnDebug = stopOnDebug;
+            //_parser.AddDebugCode(PacketType.EVENT, (short)EventCode.UpdateMoney);
+            //_parser.AddDebugCode(PacketType.EVENT, (short)EventCode.ChatMessage);
+
+            foreach (var code in events)
+            {
+                _parser.AddDebugCode(PacketType.EVENT, code);
+            }
+
+            foreach (var code in requests)
+            {
+                _parser.AddDebugCode(PacketType.REQUEST, code);
+            }
+
+            foreach (var code in responses)
+            {
+                _parser.AddDebugCode(PacketType.RESPONSE, code);
+            }
 
             // Filter certain packets that we don't care about.
             // Mostly used for debugging, but this does filter them out completely.
             _parser.FilterCode(PacketType.EVENT, (short)EventCode.Move);
             _parser.FilterCode(PacketType.REQUEST, (short)OperationCode.Move);
-            _parser.FilterCode(PacketType.EVENT, (short)EventCode.ChatMessage);
+            //_parser.FilterCode(PacketType.EVENT, (short)EventCode.ChatMessage);
             _parser.FilterCode(PacketType.EVENT, (short)EventCode.Unknown144);
             _parser.FilterCode(PacketType.EVENT, (short)EventCode.InCombatStateUpdate);
             _parser.FilterCode(PacketType.REQUEST, (short)OperationCode.ClientHardwareStats);

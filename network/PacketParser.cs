@@ -12,10 +12,11 @@ namespace TCC.Sniffer
         public static byte OperationSig = 253;
 
         public bool Debug;
-        public bool DebugPacketValues = true;
-        public short DebugEventCode = (short)EventCode.NONE;
-        public short DebugRequestCode = (short)OperationCode.NONE;
-        public short DebugResponseCode = (short)OperationCode.NONE;
+        public bool DebugAllCodes = false;
+        public bool StopOnDebug = true;
+        public List<short> DebugEventCodes = new List<short>();
+        public List<short> DebugRequestCodes = new List<short>();
+        public List<short> DebugResponseCodes = new List<short>();
 
         private Dictionary<PacketType, List<short>> _filteredCodes;
         private Dictionary<PacketType, Dictionary<short, Type>> _registeredPackets;
@@ -52,6 +53,16 @@ namespace TCC.Sniffer
             _handlePacketCallbacks.Add(callback);
         }
 
+        public void AddDebugCode(PacketType packetType, short code)
+        {
+            switch(packetType)
+            {
+                case PacketType.EVENT: DebugEventCodes.Add(code); break;
+                case PacketType.REQUEST: DebugRequestCodes.Add(code); break;
+                case PacketType.RESPONSE: DebugResponseCodes.Add(code); break;
+            }
+        }
+
         protected override void OnEvent(byte code, Dictionary<byte, object> rawData)
         {
             // Move packets work a little differently. We have to add the event code manually to them...
@@ -85,8 +96,9 @@ namespace TCC.Sniffer
             // If debugging, just print the packet data.
             if (Debug)
             {
-                DebugPacket((short)rawCode, packetType, rawData);
-                return;
+                bool debuggedPacket = DebugPacket((short)rawCode, packetType, rawData);
+
+                if (StopOnDebug && debuggedPacket) return;
             }
 
             // If this packet is not registered, do not continue.
@@ -105,24 +117,19 @@ namespace TCC.Sniffer
             logger.Debug("[{0}][{1}] Packet Processed", Enum.GetName(typeof(PacketType), packetType), (short)rawCode);
         }
 
-        private void DebugPacket(short rawCode, PacketType packetType, Dictionary<byte, object> rawData)
+        private bool DebugPacket(short rawCode, PacketType packetType, Dictionary<byte, object> rawData)
         {
-            // Get the debug code per packet type.
-            short debugCode = 0;
-            switch (packetType)
+            if (!DebugAllCodes)
             {
-                case PacketType.EVENT: debugCode = DebugEventCode; break;
-                case PacketType.REQUEST: debugCode = DebugRequestCode; break;
-                case PacketType.RESPONSE: debugCode = DebugResponseCode; break;
+                var packetSelected = packetType switch
+                {
+                    PacketType.EVENT => DebugEventCodes.Contains(rawCode),
+                    PacketType.REQUEST => DebugRequestCodes.Contains(rawCode),
+                    PacketType.RESPONSE => DebugResponseCodes.Contains(rawCode),
+                    _ => false,
+                };
+                if (!packetSelected) return false;
             }
-
-            // If one of the codes given above are -1, do not continue.
-            if (debugCode == -1)
-                return;
-
-            // If we are debugging a specific packet code, and this packet matches that code, then continue.
-            if (debugCode != 0 && debugCode != rawCode)
-                return;
 
             // Get the packet data.
             string s = "";
@@ -152,6 +159,8 @@ namespace TCC.Sniffer
             }
 
             logger.Debug("[{0}][{1}] : {2}\n{3}", Enum.GetName(typeof(PacketType), packetType), rawCode, codeName, s);
+
+            return true;
         }
 
         public static bool ParseBool(object value) =>
