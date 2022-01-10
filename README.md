@@ -81,11 +81,14 @@ To find alot more Albion related projects, visit [`AO-Data`](https://github.com/
 | Option | Description | Example |
 | --- | --- | --- |
 | --debug | When debugging, the program will log the packet values.
-| --debugAllCodes | This will enable all codes to be debugged.
-| --stopOnDebug | This will stop the program from sending debugged packets on the local network.
+| --debug-all-packets | This will enable all codes to be debugged.
+| --stop-on-debug | This will stop the program from sending debugged packets on the local network.
 | --events | Only debug these events. | 1,2,3 |
 | --requests | Only debug these requests. | 1,2,3 |
 | --responses | Only debug these responses. | 1,2,3 |
+
+Example:<br>
+`sniffer.exe --debug --debug-all-packets --stop-on-debug --events 1,2,3 --requests 1,2,3 --responses 1,2,3`
 
 ## License
 We use the [`AGPLv3 License`](LICENSE).<br>
